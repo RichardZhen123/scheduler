@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function useApplicationData () {
+
+  //updates the db to add new appointment
   function bookInterview(id, interview) {
     const prevAppointment = {...state.appointments[id]}
 
@@ -19,6 +21,7 @@ export default function useApplicationData () {
 
     return axios.put(`/api/appointments/${id}`, {interview})
     .then(() => {
+      //checks to see if prev interview appt already exists (for the edit function to not update spots)
       if (!prevAppointment.interview) { 
         return setState({
           ...state,
@@ -42,6 +45,7 @@ export default function useApplicationData () {
     interviewers: []
   })
 
+  //updates db to delete an appointment interview
   function cancelInterview(id) {
 
     const appointment = {
@@ -66,12 +70,10 @@ export default function useApplicationData () {
       })
   }
 
+  //returns an object with the updated spots
   function updateSpots(id, increase) {
     const dayIndex = state.days.find(d => state.day === d.name);
     let spots = dayIndex.spots
-
-    // const dayIndex = state.days.find(d => state.day === d.name);
-    // let spots = dayIndex.spots
 
     if (increase) {
       spots++
@@ -84,6 +86,7 @@ export default function useApplicationData () {
       spots: spots
     }
 
+    //returns the object for the specified day
     let days = state.days.map((e) => {
       if(e.name === day.name) {
         return day;
@@ -91,8 +94,6 @@ export default function useApplicationData () {
       return e;
     })
 
-    // setState({...state, days})
-    console.log(days);
     return days;
   }
 
