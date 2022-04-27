@@ -31,6 +31,8 @@ export default function Application(props) {
     /> )
   }) 
 
+  if (arrOfAppt.length > 0) arrOfAppt.push(<Appointment key="last" time="5pm"/>)
+
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),

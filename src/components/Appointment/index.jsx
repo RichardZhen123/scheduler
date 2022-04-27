@@ -50,6 +50,8 @@ export default function Appointment (props) {
       .catch((err) => (transition(ERROR_DELETE, true)));
   };
 
+
+  // console.log(props)
   return (
     <div className={'appointment'}>
       <Header time={props.time}/>
