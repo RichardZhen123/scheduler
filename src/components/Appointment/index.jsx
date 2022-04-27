@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import './styles.scss'
 import Header from './Header';
 import Show from './Show';
@@ -50,25 +50,19 @@ export default function Appointment (props) {
       .catch((err) => (transition(ERROR_DELETE, true)));
   };
 
-
-  // console.log(props)
   return (
     <div className={'appointment'}>
       <Header time={props.time}/>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === CREATE && 
         <Form 
-          interviewers={getInterviewersForDay} 
-          state={props.state} 
-          day={props.day} 
+          interviewers={getInterviewersForDay(props.state, props.day)}  
           onCancel={back} 
           onSave={save} 
         />}
       {mode === EDIT && 
         <Form 
-          interviewers={getInterviewersForDay} 
-          state={props.state} 
-          day={props.day} 
+          interviewers={getInterviewersForDay(props.state, props.day)}  
           student={props.interview.student}
           interviewer={props.interview.interviewer.id}
           onCancel={back} 
