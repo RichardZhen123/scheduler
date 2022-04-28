@@ -23,3 +23,6 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Screenshots
+!["Screenshot description"](https://github.com/RichardZhen123/scheduler/blob/master/docs/Screen%20Shot%202022-04-27%20at%2011.01.22%20PM.png)
