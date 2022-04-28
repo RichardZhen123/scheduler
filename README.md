@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+A scheduling app that allows users to track, add, delete and edit interviews.
+
 ## Setup
 
 Install dependencies with `npm install`.
